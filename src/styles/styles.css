@@ -1,0 +1,369 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+:root{
+    --bg-dark: #191a15;
+    --bg-light: rgb(194, 189, 189);
+    --bg-btn: #f21735;
+    --bg-btn-hover: #f21734c9;
+    --exc-tab: #2f3129;
+    --exc-tab-light: #e8e8e8;
+    --exc-open: #3c3e35;
+    --exc-title: #75af1f;
+    --res-dark: #CBDE25;
+}
+textarea:focus , input:focus , button:focus{
+    outline: none;
+}
+#root{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+}
+.main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; 
+}
+.darkbg{
+    background-color: var(--bg-dark);
+}
+.lightbg{
+    background-color: var(--bg-light);
+}
+.darkexc{
+    background-color: var(--exc-tab);
+}
+.lightexc{
+    background-color: var(--exc-tab-light);
+}
+.opendark{
+    background-color:var(--exc-open);
+}
+.openlight{
+    background-color: var(--exc-tab-light);
+}
+.black{
+    color: black;
+}
+.white{
+    color: white;
+}
+.green{
+    color: var(--exc-title);
+}
+header{
+    width: 90%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+header .title{
+   width: 60%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+}
+header .title h1{
+    font-family: Copperplate Gothic;
+    font-size: 30px;
+    width: 100%;
+}
+header .title p{
+    font-family: Consolas;
+    font-size: 14px;
+    width: 100%;
+}
+header .buttons{
+    width: 30%;
+    height: 90%;
+    display: flex;
+    padding-top: 5px;
+    justify-content: flex-end;
+}
+header .buttons button{
+    font-family: Copperplate Gothic;
+    font-size: 13px;
+    width: 40%;
+    height: 70%;
+    background-color: var(--bg-btn);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 2px 0 3px black;
+    font-weight: bold;
+}
+header .buttons img{
+    width: 40%;
+    height: 60%;
+}
+header .buttons .space{
+    margin-left: 15px;
+}
+header .buttons .iconwhite{
+    fill: white;
+}
+header .buttons .iconblack{
+    fill: black;
+}
+header .buttons button:hover{
+    transition: 0.2s;
+    background-color: var(--bg-btn-hover);
+}
+.editor{
+    width: 90%;
+    height: 72%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.editor .ace_editor{
+    display: flex;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 12px;
+    font-size: 14px !important;
+}
+.exc{
+    width: 90%;
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    position: relative;
+    
+}
+.exctab{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-family: Consolas;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 12px;
+}
+@keyframes show {
+    from {height: 10px;}
+    to {height: 300px;}
+}
+.exc .tab{
+    box-shadow: 0 0 2px black;
+    position: absolute;
+    bottom: 2%;
+    width: 100%;
+    z-index: 10;
+    height: 300px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation-name: show;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    -moz-animation-name: show;
+    -moz-animation-duration: 0.3s;
+    -moz-animation-timing-function: ease-in;
+    -webkit-animation-name: show;
+    -webkit-animation-duration: 0.3s;
+    -webkit-animation-timing-function: ease-in;
+}
+.exc .tab .hdr{
+    width: 100%;
+    height: 9%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    font-family: Consolas;
+    position: relative;
+}
+.exc .tab .hdr h3{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+.exc .tab .exit{
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Cursive;
+}
+.exc .tab .exit:hover{
+    transition: 0.2s;
+    color: var(--bg-btn);
+}
+@keyframes hide {
+    from {height: 300px}
+    to {height: 60px;}
+}
+.exc .exit{
+    animation-name: hide;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in;
+} 
+.errors , .output{
+    width: 95% ;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.errors .hrwhite , .output .hrwhite{
+    border: 1px solid white;
+}
+.errors .hrblack , .output .hrblack{
+    border: 1px solid black;
+}
+.errors .errtitle , .output .errtitle{
+    width: 100%;
+    height: 15%;
+    font-family: Consolas;
+    font-size: 16px;
+}
+.errors .text , .output .text{
+    align-self: center;
+    width: 97%;
+    height: 80% ;
+}
+.errors .text p , .output .text p{
+    width: 100%;
+    height: 100%;
+    color: var(--res-dark);
+    font-family: Comic Sans MS;
+    font-size: 16px;
+}
+/*--------------------------------------------------------------------------------------------------------*/
+@media screen and (min-width: 720px){
+    header .buttons button{
+        height: 80%;
+        width: 38%;
+        border-radius: 12px;
+        font-size: 19px;
+    }
+}
+/*--------------------------------------------------------------------------------------------------------*/
+@media screen and (min-width: 960px){
+    header{
+        width: 95%;
+        height: 12%;
+    }
+    header .buttons button{
+        height: 70%;
+        width: 30%;
+        border-radius: 12px;
+        font-size: 22px;
+    }
+    header .buttons img{
+        width: 30%;
+        height: 60%;
+    }
+    header .buttons .sun{
+        width: 37%;
+    }
+    header .buttons .iconwhite , header .buttons .iconblack{
+        width: 20px;
+        height: 20px;
+    }
+    header .title h1{
+        font-size: 37px;
+    }
+    header .title p{
+        font-size: 16px;
+    }
+    .editor{
+        width: 95%;
+        height: 70%;
+    }
+    .editor .ace_editor{
+        font-size: 16px !important;
+    }
+    .exc{
+        width: 95%;
+    }
+    .exctab ,.exc .tab .hdr h3 {
+        font-size: 23px;
+    }
+    .errors , .output{
+        width: 96%;
+    }
+    .errors .errtitle , .output .errtitle{
+        font-size: 18px;
+        height: 23%;
+    }
+    .errors .text , .output .text{
+        height: 85%;
+    }
+    .errors .light p , .output .light p{
+        color: brown;
+    }
+    .exc .tab .exit{
+        font-size: 18px;
+    }
+    .errors .text p , .output .text p{
+        font-size: 17px;
+    }
+}
+/*--------------------------------------------------------------------------------------------------------*/
+@media screen and (min-width: 1300px){
+    header .buttons button{
+        width: 25%;
+        font-size: 24px;
+        border-radius: 14px;
+    }
+    header .title h1{
+        font-size: 40px;
+    }
+    header .title p{
+        font-size: 16.5px;
+    }
+    .errors , .output{
+        width: 97%;
+    }
+    .errors .errtitle , .output .errtitle{
+        font-size: 19px;
+    }
+    .errors .text , .output .text{
+        height: 80%;
+    }
+    .exctab ,.exc .tab .hdr h3 {
+        font-size: 25px;
+    }
+    .errors .text p , .output .text p{
+        font-size: 18.5px;
+    }
+}
