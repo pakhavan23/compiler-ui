@@ -1,4 +1,4 @@
-import React , { useCallback, useState } from 'react';
+import React , { useState } from 'react';
 import AceEditor from 'react-ace';
 import moon from '../images/moon-2.png';
 import sun from '../images/sun-2.png';
@@ -19,7 +19,7 @@ const Editor = () => {                                      //Text Editor compon
         setTimeout(() => {
             openTab(!open);                                 
             tab.classList.remove("exit");
-        }, 300)
+        }, 290)
     }
 
     const getCode = (val) => {                              //extracts the code from the editor
@@ -36,7 +36,7 @@ const Editor = () => {                                      //Text Editor compon
                     <button onClick={() => changeTheme(!theme)} type="button" className="white">            
                         {theme ? <img className="sun" alt="sun" src={sun} /> : <img alt="moon" src={moon} /> }
                     </button>
-                    <button type="button" onClick={() => openTab(!open)} className={theme ? "black space" : "white space"}>
+                    <button type="button" onClick={!open ? () => openTab(!open) : null} className={theme ? "black space" : "white space"}>
                         Run
                         <svg class={theme ? "icon iconblack" : "icon iconwhite"} height="14" viewBox="8 4 10 16" width="12" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"></path></svg>
                     </button>

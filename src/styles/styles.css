@@ -13,6 +13,10 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
 }
 :root{
     --bg-dark: #191a15;
@@ -24,6 +28,8 @@ body{
     --exc-open: #3c3e35;
     --exc-title: #75af1f;
     --res-dark: #CBDE25;
+    --error-dark: rgb(245, 39, 39);
+    --res-light: rgb(24, 104, 136);
 }
 textarea:focus , input:focus , button:focus{
     outline: none;
@@ -44,6 +50,7 @@ textarea:focus , input:focus , button:focus{
     flex-direction: column;
     align-items: center;
     justify-content: space-around; 
+    overflow: hidden;
 }
 .darkbg{
     background-color: var(--bg-dark);
@@ -157,7 +164,6 @@ header .buttons button:hover{
     align-items: center;
     border-radius: 12px;
     position: relative;
-    
 }
 .exctab{
     width: 100%;
@@ -242,6 +248,7 @@ header .buttons button:hover{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: auto;
 }
 .errors .hrwhite , .output .hrwhite{
     border: 1px solid white;
@@ -266,6 +273,16 @@ header .buttons button:hover{
     color: var(--res-dark);
     font-family: Comic Sans MS;
     font-size: 16px;
+    user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    -webkit-user-select: text;
+}
+.errors .text p{
+    color: var(--error-dark);
+}
+.output .light p{
+    color: var(--res-light);
 }
 /*--------------------------------------------------------------------------------------------------------*/
 @media screen and (min-width: 720px){
@@ -327,9 +344,6 @@ header .buttons button:hover{
     }
     .errors .text , .output .text{
         height: 85%;
-    }
-    .errors .light p , .output .light p{
-        color: brown;
     }
     .exc .tab .exit{
         font-size: 18px;
