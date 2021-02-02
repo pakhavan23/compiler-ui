@@ -29,7 +29,7 @@ const Editor = () => {                                      //Text Editor compon
         setTimeout(() => {
             openTab(!open);                                 
             tab.classList.remove("exit");
-        }, 300);
+        }, 290);
     }
 
     const getCode = (val) => {                              //extracts the code from the editor
