@@ -1,27 +1,30 @@
-import React , { useEffect, useState } from 'react';
+import React , { useState , useEffect, useRef } from 'react';
 import AceEditor from 'react-ace';
 import moon from '../images/moon-2.png';
 import sun from '../images/sun-2.png';
-import "ace-builds/src-noconflict/mode-rust";
+import "ace-builds/src-noconflict/mode-text";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/theme-xcode";
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/ext-error_marker";
 import '../styles/styles.css';
+import CustomMode from './customMode';
 const { ipcRenderer } = window.require("electron");
-
 
 const Editor = () => {                                      //Text Editor component
     const [open , openTab] = useState(false);               //deeclaring a state for opening the execution tab
     const [theme,changeTheme] = useState(false);            //declaring a state for changing themes 
     const [text, setText] = useState("");
     const [errors, setErrors] = useState("No errors yet");
+    const editorRef = useRef("aceEditor");
 
     useEffect(() => {
+        const customMode = new CustomMode();
+        editorRef.current.editor.getSession().setMode(customMode);
         ipcRenderer.on('data:errors', (e, value) => {
             setErrors(value);
         });
-    }, []);
+    } , []);
 
     const handleTab = () => {                               //onClick method that closes the execution tab      
         let tab = document.getElementById("tab")
@@ -29,7 +32,7 @@ const Editor = () => {                                      //Text Editor compon
         setTimeout(() => {
             openTab(!open);                                 
             tab.classList.remove("exit");
-        }, 300);
+        }, 290);
     }
 
     const getCode = (val) => {                              //extracts the code from the editor
@@ -60,10 +63,10 @@ const Editor = () => {                                      //Text Editor compon
             </header>
             <section className="editor">
                 <AceEditor
-                    value={text}
+                    ref={editorRef}
                     onChange={getCode}
                     highlightActiveLine={true}
-                    mode="rust" theme={theme ? "xcode" : "monokai"} 
+                    mode="text" theme={theme ? "xcode" : "monokai"} 
                     name="editor"
                     setOptions={{
                         enableBasicAutocompletion: true,
@@ -88,9 +91,9 @@ const Editor = () => {                                      //Text Editor compon
                             <section className={theme ? "text light" : "text"}>
                                 <p style={{overflow: "auto"}}>
                                     {errors ?
-                                     errors.split('\n').map(line => (<>{line}<br/></>))
-                                     :
-                                     "No errors yet"}
+                                        errors.split('\n').map(line => (<>{line}<br/></>))
+                                        :
+                                        "No errors yet"}
                                 </p>
                             </section>
                         </section>
